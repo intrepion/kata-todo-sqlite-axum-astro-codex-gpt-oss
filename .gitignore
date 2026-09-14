@@ -286,3 +286,10 @@ vite.config.ts.timestamp-*
 .vite/
 
 #### END https://raw.githubusercontent.com/github/gitignore/refs/heads/main/Node.gitignore
+
+#### BEGIN Astro
+
+# generated types
+.astro/
+
+#### END Astro
