@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@astrojs/solid-js": "^1.0.0",
-    "@astrojs/tailwind": "^3.0.0",
+    "@astrojs/tailwind": "^6.0.2",
     "axios": "^1.6.0",
     "solid-js": "^1.7.0"
   }
