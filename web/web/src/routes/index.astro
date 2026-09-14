@@ -1,0 +1,44 @@
+---
+import { onMount, createSignal } from "solid-js";
+import { getTasks, createTask, updateTask, deleteTask } from '../lib/api';
+import TaskItem from '../components/TaskItem.astro';
+import TaskForm from '../components/TaskForm.astro';
+import type { Task } from '../lib/types';
+
+const [tasks, setTasks] = createSignal<Task[]>([]);
+const fetch = async () => setTasks(await getTasks());
+onMount(fetch);
+
+const add = async (title: string, desc?: string) => {
+  const newTask = await createTask(title, desc);
+  setTasks([...tasks(), newTask]);
+};
+
+const toggle = async (t: Task) => {
+  const updated = await updateTask(t.id, { completed: !t.completed });
+  setTasks(tasks().map(x => (x.id === updated.id ? updated : x)));
+};
+
+const remove = async (t: Task) => {
+  await deleteTask(t.id);
+  setTasks(tasks().filter(x => x.id !== t.id));
+};
+---
+<html>
+  <head>
+    <title>To‑Do List</title>
+  </head>
+  <body>
+    <h1>To‑Do List</h1>
+    <TaskForm onSubmit={add} />
+    <ul>
+      {tasks().map(t => (
+        <TaskItem
+          task={t}
+          onToggle={() => toggle(t)}
+          onDelete={() => remove(t)}
+        />
+      ))}
+    </ul>
+  </body>
+</html>

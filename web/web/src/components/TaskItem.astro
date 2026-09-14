@@ -1,0 +1,9 @@
+---
+import type { Task } from '../lib/types';
+const { task, onToggle, onDelete } = Astro.props;
+---
+<li class="task-item">
+  <input type="checkbox" checked={task.completed} onChange={onToggle} />
+  <span class={task.completed ? 'completed' : ''}>{task.title}</span>
+  <button onClick={onDelete}>✕</button>
+</li>

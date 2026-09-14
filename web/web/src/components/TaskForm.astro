@@ -1,0 +1,19 @@
+---
+import { createSignal } from "solid-js";
+const { onSubmit } = Astro.props;
+const [title, setTitle] = createSignal("");
+const [desc, setDesc] = createSignal("");
+
+const handleSubmit = async (e: Event) => {
+  e.preventDefault();
+  await onSubmit(title(), desc());
+  setTitle("");
+  setDesc("");
+};
+---
+<form onSubmit={handleSubmit} class="task-form">
+  <input type="text" placeholder="New task" value={title()} onInput={(e) => setTitle(e.currentTarget.value)} required /
+  <textarea placeholder="Description" value={desc()} onInput={(e) => setDesc(e.currentTarget.value)}
+  </textarea>
+  <button type="submit">Add</button>
+</form>
