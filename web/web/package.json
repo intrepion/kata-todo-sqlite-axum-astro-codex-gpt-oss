@@ -7,7 +7,7 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/solid-js": "^1.0.0",
+    "@astrojs/solid-js": "^7.1.2",
     "@astrojs/tailwind": "^3.0.0",
     "axios": "^1.6.0",
     "solid-js": "^1.7.0"
